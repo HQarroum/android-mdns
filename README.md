@@ -1,4 +1,4 @@
-![Logo](http://journyx.com/sites/default/files/imgs/images/directed%20graph.png)
+![Logo](http://blogs.brandeis.edu/netsys/files/2012/01/Extra-Bonjour.png)
 
 ## Android mDNS
 
