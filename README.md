@@ -1,4 +1,4 @@
-![Logo](http://blogs.brandeis.edu/netsys/files/2012/01/Extra-Bonjour.png)
+![Logo](http://techraptor.net/wp-content/uploads/2014/05/Apple-Bonjour-650x330.png)
 
 ## Android mDNS
 
