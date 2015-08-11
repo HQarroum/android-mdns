@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1'
+    }
+}
+
+allprojects {
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.jfrog.artifactory'
+    apply plugin: 'maven-publish'
+    group = "${group_id}"
+    version = "${version}"
+    repositories {
+        jcenter()
+    }
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+    sourceSets.main {
+        jniLibs.srcDir 'src/main/libs'
+        jni.srcDirs = []
+    }
+    defaultConfig {
+        minSdkVersion 1
+        targetSdkVersion 22
+        versionCode 1
+        versionName "98"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId "${group_id}"
+            artifactId "${artifact_id}"
+            version "${version}"
+            artifact("$buildDir/outputs/aar/mdns-release.aar")
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'http://groland.awox.com:8081/artifactory'
+    publish {
+        repository {
+            repoKey = 'libs-release-local'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+        }
+        defaults {
+            publications ('mavenJava')
+        }
+    }
+}
+
