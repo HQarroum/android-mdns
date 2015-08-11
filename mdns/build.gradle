@@ -4,14 +4,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
-        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1'
     }
 }
 
 allprojects {
     apply plugin: 'com.android.library'
-    apply plugin: 'com.jfrog.artifactory'
-    apply plugin: 'maven-publish'
     group = "${group_id}"
     version = "${version}"
     repositories {
@@ -39,29 +36,3 @@ android {
         }
     }
 }
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId "${group_id}"
-            artifactId "${artifact_id}"
-            version "${version}"
-            artifact("$buildDir/outputs/aar/mdns-release.aar")
-        }
-    }
-}
-
-artifactory {
-    contextUrl = 'http://groland.awox.com:8081/artifactory'
-    publish {
-        repository {
-            repoKey = 'libs-release-local'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-        }
-        defaults {
-            publications ('mavenJava')
-        }
-    }
-}
-
