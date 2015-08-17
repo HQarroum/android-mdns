@@ -1,24 +1,8 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
-    }
-}
-
-allprojects {
-    apply plugin: 'com.android.library'
-    group = "${group_id}"
-    version = "${version}"
-    repositories {
-        jcenter()
-    }
-}
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '22.0.1'
     sourceSets.main {
         jniLibs.srcDir 'src/main/libs'
         jni.srcDirs = []
