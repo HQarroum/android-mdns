@@ -2,7 +2,6 @@ package com.apple.dnssd;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import android.util.Log;
 
 public class DNSSDEmbedded {
